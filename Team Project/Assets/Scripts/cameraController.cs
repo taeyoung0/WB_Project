@@ -24,18 +24,6 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-        viewState = 1;
-        }
-        if(Input.GetKeyDown(KeyCode.UpArrow))
-        {
-        viewState = 0;
-        }
-        if(Input.GetKeyDown(KeyCode.RightArrow))
-        {
-        viewState = 2;
-        }
         if (!isMoving)
         {
             viewState = (viewState) % pos.Length;
@@ -69,5 +57,10 @@ public class CameraController : MonoBehaviour
         transform.position = targetPos;
         cameraController.orthographicSize = targetSize;
         isMoving = false;
+    }
+
+    public void SetViewState(int i)
+    {
+        viewState = i;
     }
 }

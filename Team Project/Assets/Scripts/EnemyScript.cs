@@ -8,35 +8,46 @@ public class EnemyScript : MonoBehaviour
 {
     [SerializeField]
     private GameObject walls;
+    private AudioSource audioSource;
     // Start is called before the first frame update
     [SerializeField]
     private Transform createPos;
-    
+
     [SerializeField]
     private float createInterval = 0.01f;
     private float lastCreateTime = 0f;
 
+    private bool is_turn = false;
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.A))
+        if (is_turn)
         {
-            CreateWall();
+            if (Input.GetKey(KeyCode.Space))
+            {
+                CreateWall();
+
+            }
         }
-        
     }
 
-    void CreateWall(){
-        if(Time.time - lastCreateTime > createInterval)
+    void CreateWall()
+    {
+        if (Time.time - lastCreateTime > createInterval)
         {
-            Instantiate(walls,createPos.position, quaternion.identity);
+            Instantiate(walls, createPos.position, quaternion.identity);
             lastCreateTime = Time.time;
+            audioSource.Play();
         }
-        
+
+    }
+
+    public void setTurn(bool b){
+        is_turn = b;
     }
 }

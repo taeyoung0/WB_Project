@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class UserScript : MonoBehaviour
 {
+    private AudioSource audioSource;
     private Animator animator;
     public Transform pos;
     public Vector2 boxSize;
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
     }
 
@@ -24,6 +26,7 @@ public class UserScript : MonoBehaviour
                 if (collider.tag == "Wall")
                 {
                     collider.GetComponent<WallScript>().DestroyWall();
+                    audioSource.Play();
                 }
             }
         }
