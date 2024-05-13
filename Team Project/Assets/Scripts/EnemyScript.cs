@@ -16,11 +16,12 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     private float createInterval = 0.01f;
     private float lastCreateTime = 0f;
-
+    private Animator animator;
     private bool is_turn = false;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -30,6 +31,7 @@ public class EnemyScript : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Space))
             {
+                
                 CreateWall();
 
             }
@@ -42,7 +44,8 @@ public class EnemyScript : MonoBehaviour
         {
             Instantiate(walls, createPos.position, quaternion.identity);
             lastCreateTime = Time.time;
-            audioSource.Play();
+            animator.SetTrigger("isAttack");
+            //audioSource.Play();
         }
 
     }

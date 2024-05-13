@@ -8,6 +8,8 @@ public class UserScript : MonoBehaviour
     private Animator animator;
     public Transform pos;
     public Vector2 boxSize;
+
+    private bool is_turn;
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -17,27 +19,34 @@ public class UserScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (is_turn)
         {
-            animator.SetTrigger("isAttack");
-            Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
-            foreach (Collider2D collider in collider2Ds)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (collider.tag == "Wall")
+                
+                animator.SetTrigger("isAttack");
+                Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
+                foreach (Collider2D collider in collider2Ds)
                 {
-                    collider.GetComponent<WallScript>().DestroyWall();
-                    audioSource.Play();
+                    if (collider.tag == "Wall")
+                    {
+                        collider.GetComponent<WallScript>().DestroyWall();
+                        //audioSource.Play();
+                    }
                 }
             }
         }
     }
-    private void OnDrawGizmos()
+    public void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(pos.position, boxSize);
     }
 
-
+    public void setTurn(bool b)
+    {
+        is_turn = b;
+    }
 }
 
 

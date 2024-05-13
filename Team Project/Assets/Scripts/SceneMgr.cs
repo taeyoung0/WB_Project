@@ -11,16 +11,23 @@ public enum CameraState
 
 public class SceneMgr : MonoBehaviour
 {
-    private bool is_First = true, is_User = false;
+    private bool is_First = true;
+    [SerializeField]
+    private bool is_User = false;
     private float firstTime, turnTime;
     public CameraState ecameraState;
-    CameraController cameraController;
+    public CameraController cameraController;
+
+    public UserScript userScript;
+    public EnemyScript enemyScript;
     [SerializeField]
     public float turnRate = 3.0f;
     // Start is called before the first frame update
     void Start()
     {
         cameraController = FindObjectOfType<CameraController>();
+        userScript = FindObjectOfType<UserScript>();
+        enemyScript = FindObjectOfType<EnemyScript>();
         firstTime = Time.time;
     }
 
@@ -39,12 +46,26 @@ public class SceneMgr : MonoBehaviour
         }
         else
         {
-            if (turnTime - Time.time > turnRate)
+            if (Time.time - turnTime > turnRate)
             {
                 is_User = !is_User;
                 turnTime = Time.time;
+
             }
             cameraController.SetViewState(is_User ? (int)CameraState.User : (int)CameraState.Enemy);
+        }
+        if (!is_First)
+        {
+            if ( is_User)
+            {
+                userScript.setTurn(is_User);
+                enemyScript.setTurn(!is_User);
+            }
+            else
+            {
+                userScript.setTurn(is_User);
+                enemyScript.setTurn(!is_User);
+            }
         }
 
 

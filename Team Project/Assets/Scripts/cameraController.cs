@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
         cameraController = GetComponent<Camera>();
         if (cameraController != null)
         {
-            cameraController.orthographicSize = 10.5f;
+            cameraController.orthographicSize = 10.0f;
         }
         transform.position = pos[viewState].transform.position;
     }
@@ -28,7 +28,7 @@ public class CameraController : MonoBehaviour
         {
             viewState = (viewState) % pos.Length;
             targetPosition = pos[viewState].transform.position;
-            targetOrthographicSize = viewState != 0 ? 5f : 10.5f;
+            targetOrthographicSize = viewState != 0 ? 5f : 14.5f;
             StartCoroutine(MoveCameraAndZoom(targetPosition, targetOrthographicSize));
         }
     }
