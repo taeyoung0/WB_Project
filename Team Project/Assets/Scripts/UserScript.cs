@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class UserScript : MonoBehaviour
 {
-    private AudioSource audioSource;
+
     private Animator animator;
     public Transform pos;
     public Vector2 boxSize;
-
+    
     private bool is_turn;
     void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
     }
 

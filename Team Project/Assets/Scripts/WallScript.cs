@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class WallScript : MonoBehaviour
 {
+
+    private bool isStop = false;
     private Animator animator;
     [SerializeField]
     private bool IsDestroy = false;

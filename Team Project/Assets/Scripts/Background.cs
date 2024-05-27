@@ -5,15 +5,12 @@ using UnityEngine.Scripting.APIUpdating;
 
 public class Background : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField] 
     private float movespeed = 3f;
     // Start is called before the first frame update
-    private Renderer renderer;
-    private Vector3 size;
     void Start()
     {
-        renderer = GetComponent<Renderer>();
-        size = renderer.bounds.size;
+       
     }
 
     // Update is called once per frame
@@ -21,9 +18,8 @@ public class Background : MonoBehaviour
     {
         transform.position += Vector3.left * movespeed * Time.deltaTime;
 
-        if (transform.position.x < -19.2)
-        {
-            transform.position += new Vector3(size.x * 3, 0, 0);
+        if(transform.position.x < -18.3){
+            transform.position += new Vector3(37.4f, 0,0);
         }
     }
 }

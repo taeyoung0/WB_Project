@@ -20,7 +20,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         // 유저 아이디 할당
         PhotonNetwork.NickName = userid;
         // 포톤 서버와 통신 횟수 설정 초당 30회
-        Debug.Log(PhotonNetwork.SendRate);
+        //Debug.Log(PhotonNetwork.SendRate);
         // 서버 접속
         PhotonNetwork.ConnectUsingSettings();
 
@@ -30,8 +30,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
-        Debug.Log("Connected To Master");
-        Debug.Log($"PhotonNetwork.InLobby = {PhotonNetwork.InLobby}");
+        //Debug.Log("Connected To Master");
+        //Debug.Log($"PhotonNetwork.InLobby = {PhotonNetwork.InLobby}");
         PhotonNetwork.JoinLobby(); // 로비 입장
     }
 

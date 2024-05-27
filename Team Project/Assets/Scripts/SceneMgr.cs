@@ -17,7 +17,7 @@ public class SceneMgr : MonoBehaviour
     private float firstTime, turnTime;
     public CameraState ecameraState;
     public CameraController cameraController;
-
+    public SoundMgr soundMgr;
     public UserScript userScript;
     public EnemyScript enemyScript;
     [SerializeField]
@@ -28,7 +28,10 @@ public class SceneMgr : MonoBehaviour
         cameraController = FindObjectOfType<CameraController>();
         userScript = FindObjectOfType<UserScript>();
         enemyScript = FindObjectOfType<EnemyScript>();
+        soundMgr = FindObjectOfType<SoundMgr>();
         firstTime = Time.time;
+        //audioSource = GetComponent<AudioSource>();
+        //audioSource.Play();
     }
 
     // Update is called once per frame
